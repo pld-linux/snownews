@@ -1,6 +1,7 @@
 #
 #TODO:
-#	man files
+#	- man files
+#	- something wrong with charset
 
 Summary:	Text mode RSS newsreader for Linux and Unix.
 Summary(pl):	Tekstowy czytnik newsów RSS dla Linuxa i innych Unixów
@@ -47,6 +48,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc CREDITS README
+%doc CREDITS README README.colors
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man[15]/*
