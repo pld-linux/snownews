@@ -1,11 +1,14 @@
 # TODO:
 # - something wrong with charset
-
+#
+# Conditional build:
+%bcond_with	iso2	# build with ISO-8859-2 charset instead of UTF-8
+#
 Summary:	Text mode RSS newsreader for Linux and Unix
 Summary(pl):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
 Version:	1.5.6.1
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://kiza.kcore.de/software/snownews/download/%{name}-%{version}.tar.gz
@@ -35,7 +38,7 @@ formatów.
 %build
 ./configure \
 	--prefix=%{_prefix} \
-	--charset=UTF-8
+	--charset=%{?with_iso2:ISO-8859-2}%{!?with_iso2:UTF-8}
 
 %{__make} \
 	CC="%{__cc}"
