@@ -1,16 +1,15 @@
-#
-#TODO:
-#	- man files
-#	- something wrong with charset
+# ToDo:
+# - something wrong with charset
 
 Summary:	Text mode RSS newsreader for Linux and Unix.
-Summary(pl):	Tekstowy czytnik newsów RSS dla Linuxa i innych Unixów
+Summary(pl):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
 Version:	1.5.5.1
 Release:	0.1
-License:	GPL
+License:	GPL v2
 Group:		Applications/Networking
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://kiza.kcore.de/software/snownews/download/%{name}-%{version}.tar.gz
+# Source0-md5:	53eca38d08f8621b28c6f16795353fa6
 URL:		http://kiza.kcore.de/software/snownews/
 Patch0:		%{name}-ncursesw.patch
 Patch1:		%{name}-DESTDIR.patch
@@ -24,15 +23,26 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Snownews is a text mode RSS/RDF newsreader. It supports all versions
 of RSS natively and supports other formats via plugins.
 
+%description -l pl
+Snownews jest tekstowym czytnikim RSS/RDF. Posiada natywne wsparcie
+dla wszystkich wersji RSS jak równie¿, za pomoc± pluginów, dla innych
+formatów.
+
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0	-p1
 %patch1	-p1
 %patch2	-p1
 
 %build
-./configure --prefix=/usr --charset=UTF-8
-%{__make} all
+./configure \
+	--prefix=%{_prefix} \
+	--charset=UTF-8
+
+%{__make} \
+	CC="%{__cc}"
+	CFLAGS="%{rpmcflags}" \
+	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -50,4 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CREDITS README README.colors
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man[15]/*
+%lang(de) %{_mandir}/de/man1/*
+%lang(en) %{_mandir}/man[15]/*
+%lang(fr) %{_mandir}/fr/man1/*
+%lang(it) %{_mandir}/it/man1/*
+%lang(nl) %{_mandir}/nl/man1*/
+%lang(ru) %{_mandir}/ru_RU.KOI8-R/man1/*
