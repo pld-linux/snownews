@@ -5,8 +5,8 @@ diff -burN snownews-1.5.6.orig/Makefile snownews-1.5.6/Makefile
  MAKE=       make
  INSTALL=    install
  LOCALEPATH= $(PREFIX)/share/locale
-+BINDIR=	    $(PREFIX)/bin
-+MANDIR=     $(PREFIX)/man
++BINDIR=     $(PREFIX)/bin
++MANDIR=     $(PREFIX)/share/man
  
  ### Compiler/linker flags   ###
  ### Generated via configure ###
