@@ -8,7 +8,7 @@ Summary:	Text mode RSS newsreader for Linux and Unix
 Summary(pl):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
 Version:	1.5.6.1
-Release:	0.2
+Release:	0.3
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://kiza.kcore.de/software/snownews/download/%{name}-%{version}.tar.gz
@@ -32,7 +32,7 @@ formatów.
 
 %prep
 %setup -q
-%patch0	-p1
+#patch0	-p1
 %patch1 -p1
 
 %build
@@ -41,9 +41,9 @@ formatów.
 	--charset=%{?with_iso2:ISO-8859-2}%{!?with_iso2:UTF-8}
 
 %{__make} \
-	CC="%{__cc}"
-	CFLAGS="%{rpmcflags}" \
-	LDFLAGS="%{rpmldflags}"
+	CC="%{__cc}" \
+	EXTRA_CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses%{!?with_iso2:w}" \
+	EXTRA_LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
