@@ -1,14 +1,12 @@
-# TODO:
-# - something wrong with charset
 #
 # Conditional build:
-%bcond_with	iso2	# build with ISO-8859-2 charset instead of UTF-8
+%bcond_with	utf	# build with UTF-8 charset instead of ISO-8859-2
 #
 Summary:	Text mode RSS newsreader for Linux and Unix
 Summary(pl):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
 Version:	1.5.6.1
-Release:	0.4
+Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://kiza.kcore.de/software/snownews/download/%{name}-%{version}.tar.gz
@@ -52,11 +50,11 @@ Ten pakiet zawiera dodatkowe narzêdzia snownews: opml2snow i snowsync.
 %build
 ./configure \
 	--prefix=%{_prefix} \
-	--charset=%{?with_iso2:ISO-8859-2}%{!?with_iso2:UTF-8}
+	--charset=%{?with_utf:UTF-8}%{!?with_utf:ISO-8859-2}
 
 %{__make} \
 	CC="%{__cc}" \
-	EXTRA_CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses%{!?with_iso2:w}" \
+	EXTRA_CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses%{?with_utf:w}" \
 	EXTRA_LDFLAGS="%{rpmldflags}"
 
 %install
