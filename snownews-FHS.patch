@@ -1,0 +1,53 @@
+diff -burN snownews-1.5.6.orig/Makefile snownews-1.5.6/Makefile
+--- snownews-1.5.6.orig/Makefile	2004-12-08 18:12:46.204191104 +0100
++++ snownews-1.5.6/Makefile	2004-12-08 18:19:33.627253384 +0100
+@@ -2,6 +2,8 @@
+ MAKE=       make
+ INSTALL=    install
+ LOCALEPATH= $(PREFIX)/share/locale
++BINDIR=	    $(PREFIX)/bin
++MANDIR=     $(PREFIX)/man
+ 
+ ### Compiler/linker flags   ###
+ ### Generated via configure ###
+@@ -57,12 +59,12 @@
+ 	@echo "Please see README.colors for color support in Snownews."
+ 
+ install-bin: snownews
+-	if [ ! -d "$(DESTDIR)$(PREFIX)/bin" ]; then \
+-		mkdir -p $(DESTDIR)$(PREFIX)/bin; \
++	if [ ! -d "$(DESTDIR)$(BINDIR)" ]; then \
++		mkdir -p $(DESTDIR)$(BINDIR); \
+ 	fi
+-	$(INSTALL) -s snownews $(DESTDIR)$(PREFIX)/bin
+-	$(INSTALL) opml2snow $(DESTDIR)$(PREFIX)/bin
+-	$(INSTALL) snowsync $(DESTDIR)$(PREFIX)/bin
++	$(INSTALL) -s snownews $(DESTDIR)$(BINDIR)
++	$(INSTALL) opml2snow $(DESTDIR)$(BINDIR)
++	$(INSTALL) snowsync $(DESTDIR)$(BINDIR)
+ 
+ install-locales: locales
+ 	for L in $(LOCALES); do \
+@@ -74,16 +76,16 @@
+ 
+ install-man: manpages
+ 	if [ ! -d "$(DESTDIR)$(PREFIX)/man/man1" ]; then \
+-		mkdir -p $(DESTDIR)$(PREFIX)/man/man1; \
++		mkdir -p $(DESTDIR)$(MANDIR)/man1; \
+ 	fi
+-	$(INSTALL) -m 0644 $(MAN)/snownews.1 $(DESTDIR)$(PREFIX)/man/man1
+-	$(INSTALL) -m 0644 $(MAN)/opml2snow.1 $(DESTDIR)$(PREFIX)/man/man1
++	$(INSTALL) -m 0644 $(MAN)/snownews.1 $(DESTDIR)$(MANDIR)/man1
++	$(INSTALL) -m 0644 $(MAN)/opml2snow.1 $(DESTDIR)$(MANDIR)/man1
+ 	
+ 	for L in $(LANGS); do \
+-		if [ ! -d "$(DESTDIR)$(PREFIX)/man/$$L/man1" ]; then \
+-			mkdir -p $(DESTDIR)$(PREFIX)/man/$$L/man1; \
++		if [ ! -d "$(DESTDIR)$(MANDIR)/$$L/man1" ]; then \
++			mkdir -p $(DESTDIR)$(MANDIR)/$$L/man1; \
+ 		fi; \
+-		$(INSTALL) -m 0644 $(DESTDIR)$(MAN)/$$L/snownews.1 $(PREFIX)/man/$$L/man1; \
++		$(INSTALL) -m 0644 $(MAN)/$$L/snownews.1 $(DESTDIR)$(MANDIR)/$$L/man1/snownews.1; \
+ 	done
+ 
+ ### Cleanup ###

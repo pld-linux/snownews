@@ -4,16 +4,15 @@
 Summary:	Text mode RSS newsreader for Linux and Unix
 Summary(pl):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
-Version:	1.5.5.1
+Version:	1.5.6
 Release:	0.1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://kiza.kcore.de/software/snownews/download/%{name}-%{version}.tar.gz
-# Source0-md5:	53eca38d08f8621b28c6f16795353fa6
+# Source0-md5:	745bd31c3b98d0c0694120400acfa31f
 URL:		http://kiza.kcore.de/software/snownews/
 Patch0:		%{name}-ncursesw.patch
-Patch1:		%{name}-DESTDIR.patch
-Patch2:		%{name}-manpath.patch
+Patch1:		%{name}-FHS.patch
 BuildRequires:	gettext-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	ncurses-devel
@@ -31,8 +30,7 @@ formatów.
 %prep
 %setup -q
 %patch0	-p1
-%patch1	-p1
-%patch2	-p1
+%patch1 -p1
 
 %build
 ./configure \
@@ -49,7 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	BINDIR=%{_bindir} \
+	MANDIR=%{_mandir}
 
 %find_lang %{name}
 
