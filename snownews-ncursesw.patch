@@ -1,0 +1,96 @@
+diff -urN snownews-1.5.5.1.orig/about.c snownews-1.5.5.1/about.c
+--- snownews-1.5.5.1.orig/about.c	2004-10-31 22:09:14.000000000 +0100
++++ snownews-1.5.5.1/about.c	2004-11-22 11:40:06.784024280 +0100
+@@ -24,7 +24,7 @@
+  *
+  */
+  
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ 
+ #include <time.h>
+ #include <stdlib.h>
+diff -urN snownews-1.5.5.1.orig/dialog.c snownews-1.5.5.1/dialog.c
+--- snownews-1.5.5.1.orig/dialog.c	2004-10-31 22:09:14.000000000 +0100
++++ snownews-1.5.5.1/dialog.c	2004-11-22 11:40:23.170533152 +0100
+@@ -24,7 +24,7 @@
+  *
+  */
+ 
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ 
+ #include <stdlib.h>
+ #include <unistd.h>
+diff -urN snownews-1.5.5.1.orig/interface.c snownews-1.5.5.1/interface.c
+--- snownews-1.5.5.1.orig/interface.c	2004-10-31 22:09:14.000000000 +0100
++++ snownews-1.5.5.1/interface.c	2004-11-22 11:40:35.554650480 +0100
+@@ -28,7 +28,7 @@
+ #define xmlStrlen xmlUTF8Strlen
+ #endif
+ 
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ 
+ #include <string.h>
+ #include <stdlib.h>
+diff -urN snownews-1.5.5.1.orig/io-internal.c snownews-1.5.5.1/io-internal.c
+--- snownews-1.5.5.1.orig/io-internal.c	2004-10-31 22:09:14.000000000 +0100
++++ snownews-1.5.5.1/io-internal.c	2004-11-22 11:40:47.424845936 +0100
+@@ -24,7 +24,7 @@
+  *
+  */
+  
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
+diff -urN snownews-1.5.5.1.orig/main.c snownews-1.5.5.1/main.c
+--- snownews-1.5.5.1.orig/main.c	2004-10-31 22:09:14.000000000 +0100
++++ snownews-1.5.5.1/main.c	2004-11-22 11:40:56.600451032 +0100
+@@ -24,7 +24,7 @@
+  *
+  */
+  
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
+diff -urN snownews-1.5.5.1.orig/netio.c snownews-1.5.5.1/netio.c
+--- snownews-1.5.5.1.orig/netio.c	2004-10-31 22:09:14.000000000 +0100
++++ snownews-1.5.5.1/netio.c	2004-11-22 11:41:25.077121920 +0100
+@@ -49,7 +49,7 @@
+ #include <sys/time.h>
+ #include <assert.h>
+ 
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ 
+ #include "config.h"
+ #include "main.h"
+diff -urN snownews-1.5.5.1.orig/setup.c snownews-1.5.5.1/setup.c
+--- snownews-1.5.5.1.orig/setup.c	2004-10-31 22:09:14.000000000 +0100
++++ snownews-1.5.5.1/setup.c	2004-11-22 11:41:36.971313728 +0100
+@@ -24,7 +24,7 @@
+  *
+  */
+ 
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ 
+ #include <string.h>
+ #include <unistd.h>
+diff -urN snownews-1.5.5.1.orig/ui-support.c snownews-1.5.5.1/ui-support.c
+--- snownews-1.5.5.1.orig/ui-support.c	2004-10-31 22:09:14.000000000 +0100
++++ snownews-1.5.5.1/ui-support.c	2004-11-22 11:41:49.709377248 +0100
+@@ -29,7 +29,7 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
+-#include <ncurses.h>
++#include <ncursesw/ncurses.h>
+ 
+ #include "config.h"
+ #include "version.h"
