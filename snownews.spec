@@ -32,9 +32,9 @@ Summary:	Additional utilities for snownews
 Summary(pl):	Dodatkowe narzêdzia do snownews
 Group:		Applications/Networking
 Requires:	gnupg
-Requires:	perl-libwww
 Requires:	perl-XML-LibXML
 Requires:	perl-XML-LibXSLT
+Requires:	perl-libwww
 
 %description utils
 This package contains additional snownews utilities: opml2snow and
@@ -54,7 +54,7 @@ Ten pakiet zawiera dodatkowe narzêdzia snownews: opml2snow i snowsync.
 
 %{__make} \
 	CC="%{__cc}" \
-	EXTRA_CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses%{?with_utf:w}" \
+	EXTRA_CFLAGS="%{rpmcflags} -I/usr/include/ncurses%{?with_utf:w}" \
 	EXTRA_LDFLAGS="%{rpmldflags}"
 
 %install
@@ -62,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT 
+	DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name}
 
