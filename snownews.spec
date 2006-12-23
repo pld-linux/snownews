@@ -5,14 +5,16 @@
 Summary:	Text mode RSS newsreader for Linux and Unix
 Summary(pl):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
-Version:	1.5.6.1
+Version:	1.5.7
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://kiza.kcore.de/software/snownews/download/%{name}-%{version}.tar.gz
-# Source0-md5:	466ca82e8df03d6126d6cc0f20772025
+# Source0-md5:	75ffa004e755a233f49b1cdfcd9e3d85
 URL:		http://kiza.kcore.de/software/snownews/
 Patch0:		%{name}-FHS.patch
+Patch1:		%{name}-home_etc.patch
+Patch2:		%{name}-home_etc_utils.patch
 BuildRequires:	gettext-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	ncurses-devel
@@ -46,6 +48,8 @@ Ten pakiet zawiera dodatkowe narzêdzia snownews: opml2snow i snowsync.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 ./configure \
@@ -71,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc CREDITS README README.colors
+%doc CREDITS README
 %attr(755,root,root) %{_bindir}/snownews
 %{_mandir}/man1/snownews.1*
 %lang(de) %{_mandir}/de/man1/snownews.1*
@@ -84,5 +88,6 @@ rm -rf $RPM_BUILD_ROOT
 %files utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/opml2snow
+%attr(755,root,root) %{_bindir}/snow2opml
 %attr(755,root,root) %{_bindir}/snowsync
 %{_mandir}/man1/opml2snow.1*
