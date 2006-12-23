@@ -1,6 +1,5 @@
-diff -burN snownews-1.5.6.orig/Makefile snownews-1.5.6/Makefile
---- snownews-1.5.6.orig/Makefile	2004-12-08 18:12:46.204191104 +0100
-+++ snownews-1.5.6/Makefile	2004-12-08 18:19:33.627253384 +0100
+--- snownews-1.5.7.original/Makefile	2005-06-05 11:50:22.000000000 +0200
++++ snownews-1.5.7/Makefile	2005-09-03 20:06:30.000000000 +0200
 @@ -2,6 +2,8 @@
  MAKE=       make
  INSTALL=    install
@@ -10,8 +9,8 @@ diff -burN snownews-1.5.6.orig/Makefile snownews-1.5.6/Makefile
  
  ### Compiler/linker flags   ###
  ### Generated via configure ###
-@@ -57,12 +59,12 @@
- 	@echo "Please see README.colors for color support in Snownews."
+@@ -56,15 +58,15 @@
+ 	@echo ""
  
  install-bin: snownews
 -	if [ ! -d "$(DESTDIR)$(PREFIX)/bin" ]; then \
@@ -21,18 +20,25 @@ diff -burN snownews-1.5.6.orig/Makefile snownews-1.5.6/Makefile
  	fi
 -	$(INSTALL) -s snownews $(DESTDIR)$(PREFIX)/bin
 -	$(INSTALL) opml2snow $(DESTDIR)$(PREFIX)/bin
--	$(INSTALL) snowsync $(DESTDIR)$(PREFIX)/bin
+-	if [ ! -f "$(DESTDIR)$(PREFIX)/bin/snow2opml" ]; then \
+-		ln -sf $(DESTDIR)$(PREFIX)/bin/opml2snow $(DESTDIR)$(PREFIX)/bin/snow2opml; \
 +	$(INSTALL) -s snownews $(DESTDIR)$(BINDIR)
 +	$(INSTALL) opml2snow $(DESTDIR)$(BINDIR)
++	if [ ! -f "$(DESTDIR)$(BINDIR)/snow2opml" ]; then \
++		ln -sf $(BINDIR)/opml2snow $(DESTDIR)$(BINDIR)/snow2opml; \
+ 	fi;
+-	$(INSTALL) snowsync $(DESTDIR)$(PREFIX)/bin
 +	$(INSTALL) snowsync $(DESTDIR)$(BINDIR)
  
  install-locales: locales
  	for L in $(LOCALES); do \
-@@ -74,16 +76,16 @@
+@@ -75,17 +77,17 @@
+ 	done
  
  install-man: manpages
- 	if [ ! -d "$(DESTDIR)$(PREFIX)/man/man1" ]; then \
+-	if [ ! -d "$(DESTDIR)$(PREFIX)/man/man1" ]; then \
 -		mkdir -p $(DESTDIR)$(PREFIX)/man/man1; \
++	if [ ! -d "$(DESTDIR)$(MANDIR)/man1" ]; then \
 +		mkdir -p $(DESTDIR)$(MANDIR)/man1; \
  	fi
 -	$(INSTALL) -m 0644 $(MAN)/snownews.1 $(DESTDIR)$(PREFIX)/man/man1
@@ -46,8 +52,8 @@ diff -burN snownews-1.5.6.orig/Makefile snownews-1.5.6/Makefile
 +		if [ ! -d "$(DESTDIR)$(MANDIR)/$$L/man1" ]; then \
 +			mkdir -p $(DESTDIR)$(MANDIR)/$$L/man1; \
  		fi; \
--		$(INSTALL) -m 0644 $(DESTDIR)$(MAN)/$$L/snownews.1 $(PREFIX)/man/$$L/man1; \
-+		$(INSTALL) -m 0644 $(MAN)/$$L/snownews.1 $(DESTDIR)$(MANDIR)/$$L/man1/snownews.1; \
+-		$(INSTALL) -m 0644 $(MAN)/$$L/snownews.1 $(DESTDIR)$(PREFIX)/man/$$L/man1; \
++		$(INSTALL) -m 0644 $(MAN)/$$L/snownews.1 $(DESTDIR)$(MANDIR)/$$L/man1; \
  	done
  
  ### Cleanup ###
