@@ -1,0 +1,76 @@
+diff -u -r --from-file=snownews-1.5.7.original/ snownews-1.5.7.original/opml2snow snownews-1.5.7/opml2snow
+--- snownews-1.5.7.original/opml2snow	2005-06-05 11:50:22.000000000 +0200
++++ snownews-1.5.7/opml2snow	2005-09-04 00:50:12.000000000 +0200
+@@ -29,6 +29,16 @@
+ use English;
+ 
+ #######################################################################
++# etc_path
++    my($ETC_PATH);    
++
++    if ($ENV{'HOME_ETC'}) {
++    $ETC_PATH = ("$ENV{'HOME_ETC'}");
++    } else {
++    $ETC_PATH = ($ENV{'HOME'});
++    }
++
++#######################################################################
+ # Help
+ if (index($ARGV[0], "-h") >= 0) {
+ 	print "Snownews opml2snow - subsription file import/export utility\n\n".
+@@ -80,7 +90,7 @@
+ 	if (defined($ARGV[1])) {
+ 		$inputfile = $ARGV[1];
+ 	} else {
+-		$inputfile = "$ENV{'HOME'}/.snownews/urls"
++		$inputfile = "$ETC_PATH/.snownews/urls"
+ 	}
+ 	open (URLS, "$inputfile");
+ 	my(@urls) = <URLS>;
+@@ -121,7 +131,7 @@
+ 		my($feed_script) = 4;
+ 		
+ 		my($parser) = XML::LibXML->new();
+-		my($feed_doc) = $parser->parse_file("$ENV{'HOME'}/.snownews/cache/$feed_url_hash");
++		my($feed_doc) = $parser->parse_file("$ETC_PATH/.snownews/cache/$feed_url_hash");
+ 		my($feed_root) = $feed_doc->documentElement();
+ 		$feed_root->setNamespace('http://purl.org/rss/1.0/', 'rss', 1);
+ 		
+diff -u -r --from-file=snownews-1.5.7.original/ snownews-1.5.7.original/snowsync snownews-1.5.7/snowsync
+--- snownews-1.5.7.original/snowsync	2005-06-05 11:50:22.000000000 +0200
++++ snownews-1.5.7/snowsync	2005-09-04 00:57:49.000000000 +0200
+@@ -34,6 +34,16 @@
+ use File::Copy;
+ 
+ #######################################################################
++# etc_path
++    my($ETC_PATH);    
++
++    if ($ENV{'HOME_ETC'}) {
++    $ETC_PATH = ("$ENV{'HOME_ETC'}");
++    } else {
++    $ETC_PATH = ($ENV{'HOME'});
++    }
++
++#######################################################################
+ 
+ my $fileversion = "version1";
+ my $debug = 0;
+@@ -60,7 +70,7 @@
+ my $tmpdir = "/tmp/snowsync-".$ENV{'USER'}.".$PID.".time();
+ 
+ # Default to Snownews
+-my $dot_dir = "$homedir/.snownews";
++my $dot_dir = "$ETC_PATH/.snownews";
+ my $config_loc = "$dot_dir/snowsync.conf";
+ my $log_loc = "$dot_dir/snowsync.log";
+ my $main_prog_name = "snownews";
+@@ -100,7 +110,7 @@
+ #######################################################################
+ # See if snownews is running. Works with snownews >= 1.5.6
+ sub checkRunning {
+-	my($pid_file) = $ENV{'HOME'}."/.snownews/pid";
++	my($pid_file) = $ETC_PATH."/.snownews/pid";
+ 	
+ 	open (PID, "$pid_file") or return;
+ 	my($my_pid) = <PID>;
