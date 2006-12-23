@@ -22,10 +22,10 @@
 -	$(INSTALL) opml2snow $(DESTDIR)$(PREFIX)/bin
 -	if [ ! -f "$(DESTDIR)$(PREFIX)/bin/snow2opml" ]; then \
 -		ln -sf $(DESTDIR)$(PREFIX)/bin/opml2snow $(DESTDIR)$(PREFIX)/bin/snow2opml; \
-+	$(INSTALL) -s snownews $(DESTDIR)$(BINDIR)
++	$(INSTALL) snownews $(DESTDIR)$(BINDIR)
 +	$(INSTALL) opml2snow $(DESTDIR)$(BINDIR)
 +	if [ ! -f "$(DESTDIR)$(BINDIR)/snow2opml" ]; then \
-+		ln -sf $(BINDIR)/opml2snow $(DESTDIR)$(BINDIR)/snow2opml; \
++		ln -sf opml2snow $(DESTDIR)$(BINDIR)/snow2opml; \
  	fi;
 -	$(INSTALL) snowsync $(DESTDIR)$(PREFIX)/bin
 +	$(INSTALL) snowsync $(DESTDIR)$(BINDIR)
