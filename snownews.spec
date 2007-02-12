@@ -3,7 +3,7 @@
 %bcond_with	utf	# build with UTF-8 charset instead of ISO-8859-2
 #
 Summary:	Text mode RSS newsreader for Linux and Unix
-Summary(pl):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
+Summary(pl.UTF-8):   Tekstowy czytnik newsÃ³w RSS dla Linuksa i innych UniksÃ³w
 Name:		snownews
 Version:	1.5.7
 Release:	1
@@ -24,14 +24,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Snownews is a text mode RSS/RDF newsreader. It supports all versions
 of RSS natively and supports other formats via plugins.
 
-%description -l pl
+%description -l pl.UTF-8
 Snownews jest tekstowym czytnikiem RSS/RDF. Posiada natywne wsparcie
-dla wszystkich wersji RSS jak równie¿, za pomoc± wtyczek, dla innych
-formatów.
+dla wszystkich wersji RSS jak rÃ³wnieÅ¼, za pomocÄ… wtyczek, dla innych
+formatÃ³w.
 
 %package utils
 Summary:	Additional utilities for snownews
-Summary(pl):	Dodatkowe narzêdzia do snownews
+Summary(pl.UTF-8):   Dodatkowe narzÄ™dzia do snownews
 Group:		Applications/Networking
 Requires:	gnupg
 Requires:	perl-XML-LibXML
@@ -42,8 +42,8 @@ Requires:	perl-libwww
 This package contains additional snownews utilities: opml2snow and
 snowsync.
 
-%description utils -l pl
-Ten pakiet zawiera dodatkowe narzêdzia snownews: opml2snow i snowsync.
+%description utils -l pl.UTF-8
+Ten pakiet zawiera dodatkowe narzÄ™dzia snownews: opml2snow i snowsync.
 
 %prep
 %setup -q
