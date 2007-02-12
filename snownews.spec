@@ -3,7 +3,7 @@
 %bcond_with	utf	# build with UTF-8 charset instead of ISO-8859-2
 #
 Summary:	Text mode RSS newsreader for Linux and Unix
-Summary(pl.UTF-8):   Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
+Summary(pl.UTF-8):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
 Version:	1.5.7
 Release:	1
@@ -31,7 +31,7 @@ formatów.
 
 %package utils
 Summary:	Additional utilities for snownews
-Summary(pl.UTF-8):   Dodatkowe narzędzia do snownews
+Summary(pl.UTF-8):	Dodatkowe narzędzia do snownews
 Group:		Applications/Networking
 Requires:	gnupg
 Requires:	perl-XML-LibXML
