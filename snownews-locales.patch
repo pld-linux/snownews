@@ -1,0 +1,51 @@
+diff -Naur snownews-1.5.10.original/Makefile snownews-1.5.10/Makefile
+--- snownews-1.5.10.original/Makefile	2008-09-04 14:08:46.000000000 +0200
++++ snownews-1.5.10/Makefile	2008-09-04 14:10:01.000000000 +0200
+@@ -21,11 +21,11 @@
+ 	config.h version.h main.h interface.h netio.h xmlparse.h updatecheck.h os-support.h conversions.h dialog.h ui-support.h categories.h about.h cookies.h setup.h net-support.h digcalc.h md5.h filters.h io-internal.h zlib_interface.h support.h etc_path.h
+ 
+ ### Translations ###
+-LOCALES= de es fr it nl ru sl se zh_TW zh_CN pt_BR pl ja be@latin uk_UA
++LOCALES= de es fr it nl ru sl se zh_TW zh_CN pt_BR pl ja be@latin uk
+ LOC=     po
+ 
+ ### Manpages ##
+-LANGS= de fr it nl ru_RU.KOI8-R
++LANGS= de fr it nl ru
+ MAN=   doc/man
+ 
+ ### Compile ###
+@@ -127,14 +127,14 @@
+ 	mkdir $(DISTDIR)/man/nl
+ 	mkdir $(DISTDIR)/man/fr
+ 	mkdir $(DISTDIR)/man/it
+-	mkdir $(DISTDIR)/man/ru_RU.KOI8-R
++	mkdir $(DISTDIR)/man/ru
+ 	mkdir $(DISTDIR)/po
+ 	cp AUTHOR COPYING CREDITS Changelog README README.de INSTALL.binary snownews opml2snow $(DISTDIR)
+ 	cp doc/man/de/snownews.1 $(DISTDIR)/man/de
+ 	cp doc/man/nl/snownews.1 $(DISTDIR)/man/nl
+ 	cp doc/man/fr/snownews.1 $(DISTDIR)/man/fr
+ 	cp doc/man/it/snownews.1 $(DISTDIR)/man/it
+-	cp doc/man/ru_RU.KOI8-R/snownews.1 $(DISTDIR)/man/ru_RU.KOI8-R
++	cp doc/man/ru/snownews.1 $(DISTDIR)/man/ru
+ 	cp doc/man/snownews.1 $(DISTDIR)/man
+ 	cp po/*.mo $(DISTDIR)/po
+ 	cp scripts/install.sh $(DISTDIR)
+diff -Naur snownews-1.5.10.original/scripts/install.sh snownews-1.5.10/scripts/install.sh
+--- snownews-1.5.10.original/scripts/install.sh	2008-07-28 11:26:16.000000000 +0200
++++ snownews-1.5.10/scripts/install.sh	2008-09-04 14:10:35.000000000 +0200
+@@ -38,10 +38,10 @@
+ fi
+ install -m 0644 man/it/snownews.1 $PREFIX/man/it/man1
+ 
+-if [ ! -d "$PREFIX/man/ru_RU.KOI8-R/man1" ]; then
+-  mkdir -p $PREFIX/man/ru_RU.KOI8-R/man1;
++if [ ! -d "$PREFIX/man/ru/man1" ]; then
++  mkdir -p $PREFIX/man/ru/man1;
+ fi
+-install -m 0644 man/ru_RU.KOI8-R/snownews.1 $PREFIX/man/ru_RU.KOI8-R/man1
++install -m 0644 man/ru/snownews.1 $PREFIX/man/ru/man1
+ 
+ echo "Installing translations ..."
+ if [ ! -d "$LOCALEPATH/de/LC_MESSAGES/" ]; then
