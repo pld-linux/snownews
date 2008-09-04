@@ -76,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc CREDITS README
+%doc AUTHOR Changelog CREDITS README README.de README.patching
 %attr(755,root,root) %{_bindir}/snownews
 %{_mandir}/man1/snownews.1*
 %lang(de) %{_mandir}/de/man1/snownews.1*
