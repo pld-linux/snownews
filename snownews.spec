@@ -1,20 +1,18 @@
 #
-# Conditional build:
-%bcond_with	utf	# build with UTF-8 charset instead of ISO-8859-2
-#
 Summary:	Text mode RSS newsreader for Linux and Unix
 Summary(pl.UTF-8):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
-Version:	1.5.7
+Version:	1.5.10
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://kiza.kcore.de/software/snownews/download/%{name}-%{version}.tar.gz
-# Source0-md5:	75ffa004e755a233f49b1cdfcd9e3d85
+# Source0-md5:	213a7543bab31a7dfe5a76c173cd5d49
 URL:		http://kiza.kcore.de/software/snownews/
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-home_etc_utils.patch
+Patch3:		%{name}-locales.patch
 BuildRequires:	gettext-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	ncurses-devel
@@ -39,26 +37,29 @@ Requires:	perl-XML-LibXSLT
 Requires:	perl-libwww
 
 %description utils
-This package contains additional snownews utilities: opml2snow and
-snowsync.
+This package contains additional snownews utility: opml2snow.
 
 %description utils -l pl.UTF-8
-Ten pakiet zawiera dodatkowe narzędzia snownews: opml2snow i snowsync.
+Ten pakiet zawiera dodatkowe narzędzie snownews: opml2snow.
 
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+
+mv po/uk_UA.po po/uk.po || exit 1
+mv doc/man/ru_RU.KOI8-R doc/man/ru || exit 1
+mv doc/man/ru/snownews.1.ru_RU.KOI8-R.in doc/man/ru/snownews.1.ru.in || exit 1
 
 %build
 ./configure \
-	--prefix=%{_prefix} \
-	--charset=%{?with_utf:UTF-8}%{!?with_utf:ISO-8859-2}
+	--prefix=%{_prefix}
 
 %{__make} \
 	CC="%{__cc}" \
-	EXTRA_CFLAGS="%{rpmcflags} -I/usr/include/ncurses%{?with_utf:w}" \
+	EXTRA_CFLAGS="%{rpmcflags} -I/usr/include/ncursesw" \
 	EXTRA_LDFLAGS="%{rpmldflags}"
 
 %install
@@ -82,12 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_mandir}/fr/man1/snownews.1*
 %lang(it) %{_mandir}/it/man1/snownews.1*
 %lang(nl) %{_mandir}/nl/man1/snownews.1*
-# XXX: no such dir, standard ru pages are in iso-8859-5 - convert?
-%lang(ru) %{_mandir}/ru_RU.KOI8-R/man1/snownews.1*
+%lang(ru) %{_mandir}/ru/man1/snownews.1*
 
 %files utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/opml2snow
 %attr(755,root,root) %{_bindir}/snow2opml
-%attr(755,root,root) %{_bindir}/snowsync
 %{_mandir}/man1/opml2snow.1*
