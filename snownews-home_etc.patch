@@ -296,3 +296,31 @@ diff -Naur snownews-1.5.10.original/updatecheck.c snownews-1.5.10/updatecheck.c
  	lastupdated = fopen (file, "r+");
  	if (lastupdated == NULL) {
  		lastupdated = fopen (file, "w+");
+--- snownews-1.5.12/main.c~	2009-09-17 08:44:27.000000000 +0200
++++ snownews-1.5.12/main.c	2010-02-12 00:07:05.584649815 +0100
+@@ -42,6 +42,7 @@
+ #include "setup.h"
+ #include "io-internal.h"
+ #include "getopt.h"
++#include "etc_path.h"
+ 
+ extern struct feed *first_bak;		/* For use with the signal handler. */
+ static int const pid_file_create = 1;
+@@ -57,7 +58,7 @@
+ 	char pid_path[512];
+ 	FILE *file;
+ 	
+-	snprintf(pid_path, sizeof(pid_path), "%s/.snownews/pid", getenv("HOME"));
++	snprintf(pid_path, sizeof(pid_path), "%s/.snownews/pid", set_config_dir());
+ 	if (action == pid_file_create) {
+ 		file = fopen(pid_path, "w");
+ 		if (file == NULL) {
+@@ -79,7 +80,7 @@
+ 	FILE *pidfile;
+ 	struct stat filetest;
+ 	
+-	snprintf(pid_path, sizeof(pid_path), "%s/.snownews/pid", getenv("HOME"));
++	snprintf(pid_path, sizeof(pid_path), "%s/.snownews/pid", set_config_dir());
+ 	
+ 	if (stat (pid_path, &filetest) == 0) {
+ 		pidfile = fopen(pid_path, "r");
