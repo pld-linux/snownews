@@ -1,13 +1,12 @@
-#
 Summary:	Text mode RSS newsreader for Linux and Unix
 Summary(pl.UTF-8):	Tekstowy czytnik newsów RSS dla Linuksa i innych Uniksów
 Name:		snownews
-Version:	1.5.10
+Version:	1.5.12
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://kiza.kcore.de/software/snownews/download/%{name}-%{version}.tar.gz
-# Source0-md5:	213a7543bab31a7dfe5a76c173cd5d49
+# Source0-md5:	80da8943fc5aa96571924aec0087d4c0
 URL:		http://kiza.kcore.de/software/snownews/
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-home_etc.patch

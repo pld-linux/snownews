@@ -5,18 +5,18 @@ diff -Naur snownews-1.5.10.original/Makefile snownews-1.5.10/Makefile
  include platform_settings
  
  ### Object files ###
--OBJFILES= main.o netio.o interface.o xmlparse.o updatecheck.o conversions.o dialog.o ui-support.o categories.o about.o cookies.o setup.o net-support.o digcalc.o md5.o filters.o io-internal.o os-support.o zlib_interface.o support.o
-+OBJFILES= main.o netio.o interface.o xmlparse.o updatecheck.o conversions.o dialog.o ui-support.o categories.o about.o cookies.o setup.o net-support.o digcalc.o md5.o filters.o io-internal.o os-support.o zlib_interface.o support.o etc_path.o
+-OBJFILES= main.o netio.o interface.o xmlparse.o updatecheck.o conversions.o dialog.o ui-support.o categories.o about.o cookies.o setup.o net-support.o digcalc.o filters.o io-internal.o os-support.o zlib_interface.o support.o
++OBJFILES= main.o netio.o interface.o xmlparse.o updatecheck.o conversions.o dialog.o ui-support.o categories.o about.o cookies.o setup.o net-support.o digcalc.o filters.o io-internal.o os-support.o zlib_interface.o support.o etc_path.o
  
  VERSION= `grep VERSION version.h | sed s/\"//g | sed s/\#define\ VERSION\ //`
  DISTDIR= snownews-$(VERSION)
  DISTFILES = AUTHOR COPYING CREDITS Changelog README README.de README.patching INSTALL opml2snow \
  	Makefile configure \
  	doc po scripts \
--	main.c interface.c netio.c xmlparse.c updatecheck.c os-support.c conversions.c dialog.c ui-support.c categories.c about.c cookies.c setup.c net-support.c digcalc.c md5.c filters.c io-internal.c zlib_interface.c support.c \
--	config.h version.h main.h interface.h netio.h xmlparse.h updatecheck.h os-support.h conversions.h dialog.h ui-support.h categories.h about.h cookies.h setup.h net-support.h digcalc.h md5.h filters.h io-internal.h zlib_interface.h support.h
-+	main.c interface.c netio.c xmlparse.c updatecheck.c os-support.c conversions.c dialog.c ui-support.c categories.c about.c cookies.c setup.c net-support.c digcalc.c md5.c filters.c io-internal.c zlib_interface.c support.c etc_path.c\
-+	config.h version.h main.h interface.h netio.h xmlparse.h updatecheck.h os-support.h conversions.h dialog.h ui-support.h categories.h about.h cookies.h setup.h net-support.h digcalc.h md5.h filters.h io-internal.h zlib_interface.h support.h etc_path.h
+-	main.c interface.c netio.c xmlparse.c updatecheck.c os-support.c conversions.c dialog.c ui-support.c categories.c about.c cookies.c setup.c net-support.c digcalc.c filters.c io-internal.c zlib_interface.c support.c \
+-	config.h version.h main.h interface.h netio.h xmlparse.h updatecheck.h os-support.h conversions.h dialog.h ui-support.h categories.h about.h cookies.h setup.h net-support.h digcalc.h filters.h io-internal.h zlib_interface.h support.h
++	main.c interface.c netio.c xmlparse.c updatecheck.c os-support.c conversions.c dialog.c ui-support.c categories.c about.c cookies.c setup.c net-support.c digcalc.c filters.c io-internal.c zlib_interface.c support.c etc_path.c \
++	config.h version.h main.h interface.h netio.h xmlparse.h updatecheck.h os-support.h conversions.h dialog.h ui-support.h categories.h about.h cookies.h setup.h net-support.h digcalc.h filters.h io-internal.h zlib_interface.h support.h etc_path.h
  
  ### Translations ###
  LOCALES= de es fr it nl ru sl se zh_TW zh_CN pt_BR pl ja be@latin uk_UA
@@ -151,8 +151,8 @@ diff -Naur snownews-1.5.10.original/io-internal.c snownews-1.5.10/io-internal.c
  	/* Make a backup of urls. This approach is really broken! */
  	if ((stat (file, &filetest)) != -1) {
  		if ((filetest.st_mode & S_IFREG) == S_IFREG) {
--			snprintf (syscall, sizeof(file), "cp -f %s/.snownews/urls %s/.snownews/urls.bak", getenv("HOME"), getenv("HOME"));
-+			snprintf (syscall, sizeof(file), "cp -f %s/.snownews/urls %s/.snownews/urls.bak", set_config_dir(), set_config_dir());
+-			snprintf (syscall, sizeof(file), "mv -f %s/.snownews/urls %s/.snownews/urls.bak", getenv("HOME"), getenv("HOME"));
++			snprintf (syscall, sizeof(file), "mv -f %s/.snownews/urls %s/.snownews/urls.bak", set_config_dir(), set_config_dir());
  			system (syscall);
  		}
  	}
