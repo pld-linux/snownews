@@ -12,7 +12,7 @@ Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-home_etc_utils.patch
 Patch3:		%{name}-locales.patch
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	libxml2-devel
 BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
